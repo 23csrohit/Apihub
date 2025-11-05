@@ -4,56 +4,65 @@ import { ApiHubLogo } from './icons';
 const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {/* About Section */}
-          <div>
+          <div className="lg:col-span-2">
             <div className="flex items-center gap-2 mb-4">
               <ApiHubLogo className="h-8 w-auto text-white" />
             </div>
-            <p className="text-gray-300 mb-6 max-w-md">
+            <p className="text-gray-300 mb-6 max-w-md text-sm">
               API Hub — India's trusted platform for vehicle paperwork, live tracking, and API integrations since 2022. We deliver accurate, real-time data to streamline your logistics and compliance needs.
             </p>
             <div className="flex items-center gap-2 text-gray-300">
-              <span className="font-semibold">Pan-India Coverage</span>
+              <span className="font-semibold text-sm">Pan-India Coverage</span>
             </div>
           </div>
 
-          {/* Contact Section */}
+          {/* Quick Links */}
           <div>
-            <h4 className="font-bold text-xl mb-6 text-blue-400">Contact Us</h4>
-            <div className="space-y-5">
-              <a 
-                href="tel:+919508686231" 
-                className="flex items-center gap-4 p-4 bg-gray-800/50 rounded-xl hover:bg-gray-800 transition-all group"
-              >
-                <div className="text-3xl group-hover:scale-110 transition-transform">📞</div>
-                <div>
-                  <p className="text-gray-400 text-sm mb-1">Phone</p>
-                  <p className="text-white font-bold text-lg group-hover:text-blue-400 transition-colors">
-                    +91 9508686231
-                  </p>
-                </div>
-              </a>
-              <a 
-                href="mailto:rkyo19085@gmail.com" 
-                className="flex items-center gap-4 p-4 bg-gray-800/50 rounded-xl hover:bg-gray-800 transition-all group"
-              >
-                <div className="text-3xl group-hover:scale-110 transition-transform">✉️</div>
-                <div>
-                  <p className="text-gray-400 text-sm mb-1">Email</p>
-                  <p className="text-white font-bold text-base group-hover:text-blue-400 transition-colors break-all">
-                    rkyo19085@gmail.com
-                  </p>
-                </div>
-              </a>
-            </div>
+            <h4 className="font-bold text-base mb-4 text-white">Quick Links</h4>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">About Us</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Explore APIs</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">SOP for API Access</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Blog</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Join Us</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Dashboard</a></li>
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h4 className="font-bold text-base mb-4 text-white">Resources</h4>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Utilities</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">API Policy</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Data Standards</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Developers</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Digilocker</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Information Videos</a></li>
+            </ul>
           </div>
         </div>
       </div>
-      <div className="bg-black/40 py-6">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} API Hub. All Rights Reserved.</p>
+      <div className="bg-black/40 py-6 border-t border-gray-800">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-gray-400 text-sm text-center md:text-left">
+              &copy; {new Date().getFullYear()} API Hub. All Rights Reserved.
+            </p>
+            <div className="flex gap-6 text-sm">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Use</a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Contact Us</a>
+            </div>
+          </div>
+          <div className="mt-4 text-center">
+            <p className="text-gray-500 text-xs">
+              Powered By Digital India Corporation (DIC) • National e-Governance Division (NeGD) • Ministry of Electronics & IT (MeitY) • Government of India
+            </p>
+          </div>
         </div>
       </div>
     </footer>

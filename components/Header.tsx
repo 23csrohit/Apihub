@@ -11,48 +11,61 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ onSignInClick, onApiDirectoryClick, onAboutClick, onPrivacyClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Updated navLinks to use onClick for navigation
+  // Navigation links matching APISetu-like header
   const navLinks = [
-    { name: 'Home', action: () => window.location.reload() },
-    { name: 'Services', action: onApiDirectoryClick },
-    { name: 'Contact', action: () => {
-      const contactSection = document.getElementById('contact-section');
-      contactSection?.scrollIntoView({ behavior: 'smooth' });
-    }},
-    { name: 'Privacy Policy', action: onPrivacyClick || (() => {}) },
-    { name: 'Terms and Conditions', action: () => {} },
-    { name: 'Pricing', action: () => {
-      const pricingSection = document.getElementById('pricing-section');
-      pricingSection?.scrollIntoView({ behavior: 'smooth' });
-    }},
+    { name: 'Explore APIs', action: onApiDirectoryClick },
+    { 
+      name: 'Resources', 
+      action: () => { 
+        const el = document.getElementById('resources-section'); 
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          onApiDirectoryClick();
+        }
+      } 
+    },
+    { 
+      name: 'Category', 
+      action: () => { 
+        const el = document.getElementById('top-apis-section'); 
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          onApiDirectoryClick();
+        }
+      } 
+    },
+    { name: 'Blog', action: () => { onApiDirectoryClick(); } },
+    { name: 'Join Us', action: onSignInClick },
   ];
 
   return (
-    <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+    <header className="bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-md border-b border-gray-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 md:h-20">
           <div className="flex-shrink-0">
             <ApiHubLogo className="h-8 w-auto" />
           </div>
 
-          <nav className="hidden md:flex md:items-center md:space-x-8">
+          <nav className="hidden md:flex md:items-center md:space-x-6 lg:space-x-8">
             {navLinks.map((link) => (
-              <button key={link.name} onClick={link.action} className="font-medium text-gray-600 hover:text-api-blue transition-colors">
+              <button 
+                key={link.name} 
+                onClick={link.action} 
+                className="font-medium text-gray-700 hover:text-blue-600 transition-colors text-sm lg:text-base"
+              >
                 {link.name}
               </button>
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center space-x-4">
-            <button className="p-2 text-gray-500 hover:text-api-blue">
-              <SearchIcon className="h-6 w-6" />
+          <div className="hidden md:flex items-center space-x-3 lg:space-x-4">
+            <button className="p-2 text-gray-500 hover:text-blue-600 transition-colors" aria-label="search">
+              <SearchIcon className="h-5 w-5 lg:h-6 lg:w-6" />
             </button>
-            <button
-              onClick={onSignInClick}
-              className="px-6 py-2 border border-api-blue text-api-blue font-semibold rounded-full hover:bg-api-blue hover:text-white transition-all duration-300"
-            >
-              Sign in / Register
-            </button>
+            <button onClick={onSignInClick} className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition">Log In</button>
+            <button onClick={onSignInClick} className="px-5 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-sm hover:shadow-md">Create Account</button>
           </div>
           
           <div className="md:hidden flex items-center">
@@ -67,18 +80,16 @@ const Header: React.FC<HeaderProps> = ({ onSignInClick, onApiDirectoryClick, onA
       
       {isMenuOpen && (
         <div className="md:hidden bg-white py-4">
-          <nav className="flex flex-col items-center space-y-4">
+          <nav className="flex flex-col items-center space-y-3 px-4">
             {navLinks.map((link) => (
-              <button key={link.name} onClick={link.action} className="font-medium text-gray-600 hover:text-api-blue transition-colors">
+              <button key={link.name} onClick={() => { setIsMenuOpen(false); link.action(); }} className="w-full text-left font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">
                 {link.name}
               </button>
             ))}
-            <button
-              onClick={onSignInClick}
-              className="w-4/5 text-center mt-2 px-6 py-2 bg-api-blue text-white font-semibold rounded-full hover:bg-api-blue-800 transition-all duration-300"
-            >
-              Sign in / Register
-            </button>
+            <div className="w-full mt-2 flex gap-3">
+              <button onClick={() => { setIsMenuOpen(false); onSignInClick(); }} className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg font-medium">Log In</button>
+              <button onClick={() => { setIsMenuOpen(false); onSignInClick(); }} className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg font-medium">Create Account</button>
+            </div>
           </nav>
         </div>
       )}

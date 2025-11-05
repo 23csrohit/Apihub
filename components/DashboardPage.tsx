@@ -148,7 +148,7 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ navigateToHome }) => {
     <>
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
-      <aside className={`${sidebarOpen ? 'w-64' : 'w-20'} bg-gradient-to-b from-blue-700 to-indigo-800 text-white transition-all duration-300 flex flex-col fixed h-full z-50`}>
+      <aside className={`${sidebarOpen ? 'translate-x-0 w-64' : '-translate-x-full md:translate-x-0 md:w-20'} bg-gradient-to-b from-blue-700 to-indigo-800 text-white transition-all duration-300 transform fixed h-full z-50 flex flex-col shadow-xl`}>
         {/* Logo */}
         <div className="p-4 border-b border-blue-600">
           <div className="flex items-center gap-3">
@@ -183,10 +183,10 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ navigateToHome }) => {
         </nav>
 
         {/* Toggle Sidebar Button */}
-        <div className="p-4 border-t border-blue-600">
+        <div className="p-4 border-t border-blue-600 hidden md:block">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-lg text-blue-100 hover:bg-blue-600 transition-all"
+            className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-lg text-blue-100 hover:bg-blue-600 transition-all focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
           >
             <span className="text-xl">{sidebarOpen ? '◀' : '▶'}</span>
           </button>
@@ -194,14 +194,14 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ navigateToHome }) => {
       </aside>
 
       {/* Main Content */}
-      <main className={`flex-1 transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-20'}`}>
+      <main className={`flex-1 transition-all duration-300 ${sidebarOpen ? 'md:ml-64' : 'md:ml-20'}`}>
         <div className="p-4 md:p-6">
           {/* Top Bar */}
-          <div className="bg-white rounded-xl shadow-md p-4 mb-6 flex items-center justify-between">
+          <div className="bg-white rounded-xl shadow-md p-4 mb-6 flex items-center justify-between sticky top-0 z-40">
             <div className="flex items-center gap-4">
               <button
-                onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="md:hidden p-2 hover:bg-gray-100 rounded-lg"
+                onClick={() => setSidebarOpen(prev => !prev)}
+                className="md:hidden p-2 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -240,8 +240,8 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ navigateToHome }) => {
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-            <div className="bg-white rounded-xl shadow-md p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6">
+            <div className="bg-white rounded-xl shadow-md p-4 md:p-6 hover:shadow-lg transition-shadow">
               <div className="flex items-center justify-between mb-4">
                 <h4 className="text-sm font-semibold text-gray-600 uppercase">Max Search Limit</h4>
                 <span className="text-2xl">🔍</span>
@@ -272,8 +272,8 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ navigateToHome }) => {
           </div>
 
           {/* Remaining Limits */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl shadow-md p-6 border border-green-200">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-6">
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl shadow-md p-4 md:p-6 border border-green-200 hover:shadow-lg transition-all">
               <div className="flex items-center justify-between mb-4">
                 <h4 className="text-lg font-bold text-gray-800">Remaining Searches</h4>
                 <span className="text-3xl">✅</span>
@@ -424,8 +424,8 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ navigateToHome }) => {
 
           {/* Vehicle RC tab */}
           {activeTab === 'vehicle-rc' && (
-            <div className="mt-6">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">Vehicle RC Lookup</h2>
+            <div className="mt-4 md:mt-6">
+              <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4">Vehicle RC Lookup</h2>
               <VehicleRC />
             </div>
           )}
@@ -488,8 +488,8 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ navigateToHome }) => {
 
           {/* Additional Tabs Content (fallback for other tabs) */}
           {activeTab !== 'dashboard' && activeTab !== 'location' && activeTab !== 'vehicle-rc' && (
-            <div className="bg-white rounded-xl shadow-md p-6 mt-6">
-              <p className="text-gray-600">Content for {navItems.find(item => item.key === activeTab)?.label || 'selected tab'}</p>
+            <div className="bg-white rounded-xl shadow-md p-4 md:p-6 mt-4 md:mt-6">
+              <p className="text-sm md:text-base text-gray-600">Content for {navItems.find(item => item.key === activeTab)?.label || 'selected tab'}</p>
             </div>
           )}
                 </div>

@@ -3,7 +3,7 @@ import AboutUsPage from './components/AboutUsPage';
 import ApiDirectoryPage from './components/ApiDirectoryPage';
 import Chatbot from './components/Chatbot';
 import DashboardPage from './components/DashboardPage';
-import HomePage from './components/HomePage';
+import LandingPage from './components/LandingPage';
 import LoginPage from './components/LoginPage';
 import PrivacyPolicyPage from './components/PrivacyPolicyPage';
 import RegisterPage from './components/RegisterPage';
@@ -39,12 +39,14 @@ const App: React.FC = () => {
                />;
       case 'home':
       default:
-        return <HomePage 
-                  navigateToLogin={() => navigateTo('login')} 
-                  navigateToApiDirectory={() => navigateTo('apiDirectory')} 
-                  navigateToAbout={() => navigateTo('about')}
-                  navigateToPrivacy={() => navigateTo('privacy')}
-               />;
+        return (
+          <LandingPage
+            navigateToLogin={() => navigateTo('login')}
+            navigateToApiDirectory={() => navigateTo('apiDirectory')}
+            navigateToAbout={() => navigateTo('about')}
+            navigateToPrivacy={() => navigateTo('privacy')}
+          />
+        );
     }
   };
 
