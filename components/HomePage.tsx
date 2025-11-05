@@ -1,6 +1,9 @@
 import React from 'react';
+import DLCheck from './DLCheck';
 import Footer from './Footer';
 import Header from './Header';
+import OwnerHistory from './OwnerHistory';
+import VehicleRC from './VehicleRC';
 
 interface HomePageProps {
   navigateToLogin: () => void;
@@ -171,6 +174,21 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToLogin, navigateToApiDirec
                 <button className="w-full px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm sm:text-base font-bold rounded-xl hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                   Explore API Docs →
                 </button>
+              </div>
+
+              {/* Vehicle RC Lookup (interactive) */}
+              <div className="col-span-1">
+                <VehicleRC />
+              </div>
+
+              {/* Owner History Lookup (interactive) */}
+              <div className="col-span-1">
+                <OwnerHistory />
+              </div>
+
+              {/* DL Check (interactive) */}
+              <div className="col-span-1">
+                <DLCheck />
               </div>
 
               {/* SARATHI Driver Info */}

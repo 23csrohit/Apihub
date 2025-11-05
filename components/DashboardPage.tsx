@@ -1,4 +1,12 @@
 import React, { useMemo, useState } from 'react';
+import ContactUs from './ContactUs';
+import DLCheck from './DLCheck';
+import DriverReview from './DriverReview';
+import MyDriver from './MyDriver';
+import MyFleet from './MyFleet';
+import OwnerHistory from './OwnerHistory';
+import Upgrade from './Upgrade';
+import VehicleRC from './VehicleRC';
 
 interface DashboardPageProps {
   navigateToHome: () => void;
@@ -414,8 +422,72 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ navigateToHome }) => {
             </div>
           )}
 
-          {/* Additional Tabs Content */}
-          {activeTab !== 'dashboard' && activeTab !== 'location' && (
+          {/* Vehicle RC tab */}
+          {activeTab === 'vehicle-rc' && (
+            <div className="mt-6">
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">Vehicle RC Lookup</h2>
+              <VehicleRC />
+            </div>
+          )}
+
+          {/* Owner History tab */}
+          {activeTab === 'owner-history' && (
+            <div className="mt-6">
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">Owner History</h2>
+              <OwnerHistory />
+            </div>
+          )}
+
+          {/* DL Check tab */}
+          {activeTab === 'dl-check' && (
+            <div className="mt-6">
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">DL Check</h2>
+              <DLCheck />
+            </div>
+          )}
+
+          {/* My Fleet tab */}
+          {activeTab === 'my-fleet' && (
+            <div className="mt-6">
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">My Fleet</h2>
+              <MyFleet />
+            </div>
+          )}
+
+          {/* My Driver tab */}
+          {activeTab === 'my-driver' && (
+            <div className="mt-6">
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">My Driver</h2>
+              <MyDriver />
+            </div>
+          )}
+
+          {/* Driver Review tab */}
+          {activeTab === 'driver-review' && (
+            <div className="mt-6">
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">Driver Reviews</h2>
+              <DriverReview />
+            </div>
+          )}
+
+          {/* Upgrade tab */}
+          {activeTab === 'upgrade' && (
+            <div className="mt-6">
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">Upgrade</h2>
+              <Upgrade />
+            </div>
+          )}
+
+          {/* Contact Us tab */}
+          {activeTab === 'contact' && (
+            <div className="mt-6">
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">Contact Us</h2>
+              <ContactUs />
+            </div>
+          )}
+
+          {/* Additional Tabs Content (fallback for other tabs) */}
+          {activeTab !== 'dashboard' && activeTab !== 'location' && activeTab !== 'vehicle-rc' && (
             <div className="bg-white rounded-xl shadow-md p-6 mt-6">
               <p className="text-gray-600">Content for {navItems.find(item => item.key === activeTab)?.label || 'selected tab'}</p>
             </div>
